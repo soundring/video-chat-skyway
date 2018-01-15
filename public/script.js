@@ -20,25 +20,6 @@ peer = new Peer({
   debug:3
 });
 
-// 相手からデータ通信の接続要求イベントが来た場合、このconnectionイベントが呼ばれる
-// - 渡されるconnectionオブジェクトを操作することで、データ通信が可能
-peer.on('connection', function(connection){
-  　
-  // データ通信用に connectionオブジェクトを保存しておく
-  conn = connection;
-
-  // 接続が完了した場合のイベントの設定
-  conn.on("open", function() {
-      // 相手のIDを表示する
-      // - 相手のIDはconnectionオブジェクトのidプロパティに存在する
-      $("#peer-id").text(conn.id);
-      $('#my-id').text(peer.id);
-  });
-
-  // メッセージ受信イベントの設定
-  conn.on("data", onRecvMessage);
-});
-
 //SkyWayのシグナリングサーバと接続し、利用する準備が整ったら発火
 //peer.on('open', function(){
 //  $('#my-id').text(peer.id);
@@ -114,4 +95,35 @@ function setupMakeCallUI(){
 function setupEndCallUI() {
   $('#make-call').hide();
   $('#end-call').show();
+}
+
+// 入室
+let room = null;
+$('#join').click(function(){
+    room = peer.joinRoom($('#roomName').val(), {mode: 'sfu'});
+    chatlog('<i>' + $('#roomName').val() + '</i>に入室しました');
+
+    // チャットを送信
+    $('#send').click(function(){
+        var msg = $('#msg').val();
+        room.send(msg);
+        chatlog('自分> ' + msg);
+    });
+
+    // チャットを受信
+    room.on('data', function(data){
+        chatlog('ID: ' + data.src + '> ' + data.data); // data.src = 送信者のpeerid, data.data = 送信されたメッセージ
+    });
+});
+
+// 退室
+$('#leave').click(function(){
+  room.close();
+  chatlog('<i>' + $('#roomName').val() + '</i>から退室しました');
+})
+
+
+// チャットログに記録するための関数
+function chatlog(msg){
+  $('#chatLog').append('<p>' + msg + '</p>');
 }
