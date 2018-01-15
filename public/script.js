@@ -20,10 +20,29 @@ peer = new Peer({
   debug:3
 });
 
-//SkyWayのシグナリングサーバと接続し、利用する準備が整ったら発火
-peer.on('open', function(){
-  $('#my-id').text(peer.id);
+// 相手からデータ通信の接続要求イベントが来た場合、このconnectionイベントが呼ばれる
+// - 渡されるconnectionオブジェクトを操作することで、データ通信が可能
+peer.on('connection', function(connection){
+  　
+  // データ通信用に connectionオブジェクトを保存しておく
+  conn = connection;
+
+  // 接続が完了した場合のイベントの設定
+  conn.on("open", function() {
+      // 相手のIDを表示する
+      // - 相手のIDはconnectionオブジェクトのidプロパティに存在する
+      $("#peer-id").text(conn.id);
+      $('#my-id').text(peer.id);
+  });
+
+  // メッセージ受信イベントの設定
+  conn.on("data", onRecvMessage);
 });
+
+//SkyWayのシグナリングサーバと接続し、利用する準備が整ったら発火
+//peer.on('open', function(){
+//  $('#my-id').text(peer.id);
+//});
 
 //何らかのエラーが発生した場合に発火
 peer.on('error', function(err) {
