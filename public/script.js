@@ -15,10 +15,10 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
         return;
     });
 
-//peer = new Peer({
-//  key: '24b4a787-6830-4b44-b5bd-4f19022e1794',
-//  debug:3
-//});
+peer = new Peer({
+  key: '24b4a787-6830-4b44-b5bd-4f19022e1794',
+  debug:3
+});
 
 //SkyWayのシグナリングサーバと接続し、利用する準備が整ったら発火
 peer.on('open', function(){
