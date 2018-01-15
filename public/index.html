@@ -7,7 +7,6 @@
 </head>
 <div class="pure-g">
 
-    <a href="./datachat.html">テキストチャットをする</a>
     <!-- Video area -->
     <div class="pure-u-2-3" id="video-container">
         <video id="their-video" autoplay></video>
@@ -31,6 +30,26 @@
         </form>
     </div>
 </div>
+
+<body>
+    <h1>Chat</h1>
+    <div>
+        <input type="text" placeholder="PeerID" id="peer-id-input">
+        <button id="connect">Connect</button>
+        <button id="close">Close</button>
+    </div>
+    <div>
+        <p>MyID: <span id="my-id">-</span></p>
+        <p>PeerID: <span id="peer-id">-</span></p>
+    </div>
+    <hr>
+    <div>
+        <input type="text" placeholder="Chat Message" id="message">
+        <button id="send">Send</button>
+    </div>
+    <div id="messages"></div>
+</body>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
 <script type="text/javascript" src="script.js"></script>
