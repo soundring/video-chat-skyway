@@ -1,4 +1,6 @@
 # skywayを利用したWebRTCのアプリです
-Node,jsを使っています。
+## ビデオチャットとテキストによるグループチャットができます。
+### [こちらからアクセスできます](https://video-chat-skyway.herokuapp.com/)
+Node.jsを使っています。
 Herokuにデプロイしています。
 
