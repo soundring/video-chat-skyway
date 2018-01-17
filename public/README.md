@@ -1,5 +1,5 @@
-# SkyWay JS SDK Tutorial
+# SkyWay JS SDKのチュートリアルにグループチャットを追加したものです
 
-Please refer to the URL below for further details.
 
+SkyWayのチュートリアルについてはこちら
 https://webrtc.ecl.ntt.com/en/js-tutorial.html
