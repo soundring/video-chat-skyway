@@ -1,5 +1,6 @@
 'use strict';
 
+
 //カメラ映像・マイク音声を取得する処理
 let localStream = null;
 let peer = null;
@@ -17,7 +18,7 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
     });
 
 peer = new Peer({
-  key:"自分のAPIキー" ,
+  key:'自分のAPIキー',
   debug:3
 });
 
